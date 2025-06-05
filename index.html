@@ -92,30 +92,34 @@
   </form>
 
   <script>
-    const endpoint = "TU_URL_REAL_DE_APPS_SCRIPT";
+const endpoint = "https://script.google.com/macros/s/AKfycbyLPtShWhcVDJXpAakHChmOU01sqnPwZiV_fQkT6d6PzYP96yTdcInkErHFrbD3lw/exec";
 
-    document.getElementById("registroForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+document.getElementById("registroForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-      const data = Object.fromEntries(new FormData(this));
+  const data = Object.fromEntries(new FormData(this));
 
-      fetch(endpoint, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(res => res.text())
-      .then(msg => {
-        alert("Resultado registrado correctamente.");
-        this.reset();
-      })
-      .catch(err => {
-        console.error("Error:", err);
-        alert("Error al registrar el resultado.");
-      });
-    });
+  // Mostrar alerta visual mientras se envía
+  alert("Enviando datos…");
+
+  fetch(endpoint, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.text())
+  .then(msg => {
+    console.log("Respuesta del servidor:", msg);
+    alert("✅ Resultado registrado correctamente.");
+    this.reset();
+  })
+  .catch(err => {
+    console.error("Error:", err);
+    alert("❌ Error al registrar el resultado. Revisa la consola (F12).");
+  });
+});
 
 <script src="script.js"></script>
 </body>
