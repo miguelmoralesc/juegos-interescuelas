@@ -6,7 +6,7 @@ const resAInput = document.getElementById('resA');
 const resBLabel = document.querySelector('#resultadoB-container label');
 const resBInput = document.getElementById('resB');
 
-const endpoint = 'https://script.google.com/macros/s/AKfycbyLrPtShVWcVbJRXpAakHJChmOUO1sqnPwiZV_fQKTdG0F2rYPP6yTdcInkrHEhFbRJ1w/exec'; // Reemplazar con URL real
+const endpoint = "https://script.google.com/macros/s/AKfycbyLrPtShVWcVbJRXpAakHJChmOUO1sqnPwiZV_fQKTdG0F2rYPP6yTdcInkrHEhFbRJ1w/exec"; // Reemplazar con URL real
 
 function updateResultLabels() {
     const deporte = deporteSelect.value;
