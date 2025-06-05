@@ -1,82 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juegos Interescuelas</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juegos Interescuelas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #004080;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      background-color: #004080;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+  </style>
 </head>
 <body>
-    <h1>Registro de Juegos Interescuelas</h1>
+  <h1>Registro de Juegos Interescuelas</h1>
+  <form id="registroForm">
+    <label>Fecha:
+      <input type="date" name="fecha" required />
+    </label>
+    <label>Escuela:
+      <input type="text" name="escuela" required />
+    </label>
+    <label>Fuerza:
+      <input type="text" name="fuerza" required />
+    </label>
+    <label>Deporte:
+      <select name="deporte" required>
+        <option value="">Seleccione...</option>
+        <option value="Fútbol">Fútbol</option>
+        <option value="Atletismo">Atletismo</option>
+        <option value="Ping Pong">Ping Pong</option>
+        <option value="Ajedrez">Ajedrez</option>
+        <!-- puedes añadir más -->
+      </select>
+    </label>
+    <label>Tipo de Encuentro:
+      <input type="text" name="tipo" required />
+    </label>
+    <label>Participante A:
+      <input type="text" name="participanteA" required />
+    </label>
+    <label>Participante B:
+      <input type="text" name="participanteB" required />
+    </label>
+    <label>Resultado A:
+      <input type="text" name="respA" required />
+    </label>
+    <label>Resultado B:
+      <input type="text" name="respB" required />
+    </label>
+    <label>Observaciones:
+      <textarea name="observaciones"></textarea>
+    </label>
+    <button type="submit">Guardar</button>
+  </form>
 
-    <form id="result-form">
-        <div class="form-row">
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required>
-        </div>
-        <div class="form-row">
-            <label for="escuela">Escuela:</label>
-            <input type="text" id="escuela" name="escuela" required>
-        </div>
-        <div class="form-row">
-            <label for="fuerza">Fuerza:</label>
-            <input type="text" id="fuerza" name="fuerza" required>
-        </div>
-        <div class="form-row">
-            <label for="deporte">Deporte:</label>
-            <select id="deporte" name="deporte" required>
-                <option value="">Seleccione...</option>
-                <option value="futbol">Fútbol</option>
-                <option value="ajedrez">Ajedrez</option>
-                <option value="atletismo">Atletismo</option>
-            </select>
-        </div>
-        <div class="form-row">
-            <label for="tipo">Tipo de Encuentro:</label>
-            <input type="text" id="tipo" name="tipo" required>
-        </div>
-        <div class="form-row">
-            <label for="partA">Participante A:</label>
-            <input type="text" id="partA" name="partA" required>
-        </div>
-        <div class="form-row">
-            <label for="partB">Participante B:</label>
-            <input type="text" id="partB" name="partB" required>
-        </div>
-        <div class="form-row" id="resultadoA-container">
-            <label for="resA">Resultado A:</label>
-            <input type="text" id="resA" name="resA" required>
-        </div>
-        <div class="form-row" id="resultadoB-container">
-            <label for="resB">Resultado B:</label>
-            <input type="text" id="resB" name="resB" required>
-        </div>
-        <div class="form-row">
-            <label for="observaciones">Observaciones:</label>
-            <textarea id="observaciones" name="observaciones"></textarea>
-        </div>
-        <button type="submit">Guardar</button>
-    </form>
+  <script>
+    const endpoint = "TU_URL_REAL_DE_APPS_SCRIPT";
 
-    <table id="results-table">
-        <thead>
-            <tr>
-                <th>Fecha</th>
-                <th>Escuela</th>
-                <th>Fuerza</th>
-                <th>Deporte</th>
-                <th>Tipo</th>
-                <th>Participante A</th>
-                <th>Participante B</th>
-                <th>Resultado A</th>
-                <th>Resultado B</th>
-                <th>Observaciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    document.getElementById("registroForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    <script src="script.js"></script>
+      const data = Object.fromEntries(new FormData(this));
+
+      fetch(endpoint, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => res.text())
+      .then(msg => {
+        alert("Resultado registrado correctamente.");
+        this.reset();
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("Error al registrar el resultado.");
+      });
+    });
+
+<script src="script.js"></script>
 </body>
 </html>
