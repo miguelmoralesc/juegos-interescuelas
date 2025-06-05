@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos Interescuelas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Registro de Juegos Interescuelas</h1>
+
+    <form id="result-form">
+        <div class="form-row">
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required>
+        </div>
+        <div class="form-row">
+            <label for="escuela">Escuela:</label>
+            <input type="text" id="escuela" name="escuela" required>
+        </div>
+        <div class="form-row">
+            <label for="fuerza">Fuerza:</label>
+            <input type="text" id="fuerza" name="fuerza" required>
+        </div>
+        <div class="form-row">
+            <label for="deporte">Deporte:</label>
+            <select id="deporte" name="deporte" required>
+                <option value="">Seleccione...</option>
+                <option value="futbol">Fútbol</option>
+                <option value="ajedrez">Ajedrez</option>
+                <option value="atletismo">Atletismo</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <label for="tipo">Tipo de Encuentro:</label>
+            <input type="text" id="tipo" name="tipo" required>
+        </div>
+        <div class="form-row">
+            <label for="partA">Participante A:</label>
+            <input type="text" id="partA" name="partA" required>
+        </div>
+        <div class="form-row">
+            <label for="partB">Participante B:</label>
+            <input type="text" id="partB" name="partB" required>
+        </div>
+        <div class="form-row" id="resultadoA-container">
+            <label for="resA">Resultado A:</label>
+            <input type="text" id="resA" name="resA" required>
+        </div>
+        <div class="form-row" id="resultadoB-container">
+            <label for="resB">Resultado B:</label>
+            <input type="text" id="resB" name="resB" required>
+        </div>
+        <div class="form-row">
+            <label for="observaciones">Observaciones:</label>
+            <textarea id="observaciones" name="observaciones"></textarea>
+        </div>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <table id="results-table">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Escuela</th>
+                <th>Fuerza</th>
+                <th>Deporte</th>
+                <th>Tipo</th>
+                <th>Participante A</th>
+                <th>Participante B</th>
+                <th>Resultado A</th>
+                <th>Resultado B</th>
+                <th>Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
